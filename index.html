@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Asal Sayı Kontrolü</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        input, button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 10px;
+        }
+        #sonuc {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Asal Sayı Kontrolü</h1>
+    <input type="number" id="sayi" placeholder="Bir sayı girin" />
+    <button onclick="kontrolEt()">Kontrol Et</button>
+    <div id="sonuc"></div>
+
+    <script>
+        function kontrolEt() {
+            const deger = parseInt(document.getElementById("sayi").value);
+            let x = deger - 1;
+            let asalMi = true;
+
+            if (deger < 2) {
+                asalMi = false;
+            } else {
+                while (x > 1) {
+                    if (deger % x === 0) {
+                        asalMi = false;
+                        break;
+                    }
+                    x--;
+                }
+            }
+
+            const sonuc = document.getElementById("sonuc");
+            if (asalMi) {
+                sonuc.textContent = `${deger} sayısı ASALDIR.`;
+                sonuc.style.color = "green";
+            } else {
+                sonuc.textContent = `${deger} sayısı asal değildir.`;
+                sonuc.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
